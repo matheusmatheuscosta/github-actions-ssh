@@ -1,0 +1,25 @@
+name: "Github Actions SSH"
+author: "Matheus Costa"
+description: "SSH integration github actions by passwords"
+inputs:
+  PASSWORD_VAULT_URL:
+    description: "Password vault url."
+    required: false
+  HOST:
+    description: "Host to connect."
+    required: true
+  USERNAME:
+    description: "Username to connect."
+    required: true
+  PASSWORD:
+    description: "Password to connect."
+    required: true
+  SCRIPT:
+    description: "Script to send."
+    required: true
+runs:
+  using: "node12"
+  main: "dist/index.js"
+branding:
+  color: "orange"
+  icon: "message-circle"
