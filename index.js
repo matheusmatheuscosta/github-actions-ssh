@@ -29,20 +29,20 @@ try {
       USERNAME = retorno.USERNAME;
       PASSWORD = retorno.PASSWORD;
       SCRIPT = retorno.SCRIPT;
-      sendSsh(HOST, USERNAME, PASSWORD, SCRIPT);
+      sendSsh(HOST, PORT, USERNAME, PASSWORD, SCRIPT);
     }).catch(function (error) {
       console.log(error);
     });
   } else {
     console.log("PASSWORD_VAULT_URL is empty");
-    sendSsh(HOST, USERNAME, PASSWORD, SCRIPT);
+    sendSsh(HOST, PORT, USERNAME, PASSWORD, SCRIPT);
   }
 } catch (error) {
   core.setFailed(error.message);
 }
 
 // cria função para executar o script via ssh linha por linha
-function sendSsh(HOST, USERNAME, PASSWORD, SCRIPT) {
+function sendSsh(HOST, PORT, USERNAME, PASSWORD, SCRIPT) {
   const Client = require('ssh2').Client;
   const conn = new Client();
   conn.on('ready', function () {
