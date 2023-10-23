@@ -55957,6 +55957,10 @@ console.log("amqp created.");
 try {
   const PASSWORD_VAULT_URL = core.getInput("PASSWORD_VAULT_URL");
   let HOST = core.getInput("HOST");
+  let PORT = core.getInput("PORT");
+  if (PORT == null || PORT == "") {
+    PORT = 22;
+  }
   let USERNAME = core.getInput("USERNAME");
   let PASSWORD = core.getInput("PASSWORD");
   let SCRIPT = core.getInput("SCRIPT");
@@ -55964,6 +55968,7 @@ try {
     const url = PASSWORD_VAULT_URL + '/secrets/replace';
     const data = {
       HOST: HOST,
+      PORT: PORT,
       USERNAME: USERNAME,
       PASSWORD: PASSWORD,
       SCRIPT: SCRIPT
@@ -55972,6 +55977,7 @@ try {
     axios.post(url, data).then(function (response) {
       retorno = response.data;
       HOST = retorno.HOST;
+      PORT = retorno.PORT;
       USERNAME = retorno.USERNAME;
       PASSWORD = retorno.PASSWORD;
       SCRIPT = retorno.SCRIPT;
@@ -56006,7 +56012,7 @@ function sendSsh(HOST, USERNAME, PASSWORD, SCRIPT) {
     });
   }).connect({
     host: HOST,
-    port: 22,
+    port: PORT,
     username: USERNAME,
     password: PASSWORD
   });

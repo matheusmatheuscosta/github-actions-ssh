@@ -8,6 +8,9 @@ inputs:
   HOST:
     description: "Host to connect."
     required: true
+  PORT:
+    description: "Port to connect."
+    required: false
   USERNAME:
     description: "Username to connect."
     required: true
